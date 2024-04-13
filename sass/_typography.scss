@@ -1,0 +1,26 @@
+h1{
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    @media (min-width: 1024px){
+        font-size: 2.5rem;
+    }
+}
+h2{
+    font-size: 1.25rem;
+    font-weight: 600;
+    @media (min-width: 1024px){
+        font-size: 2.25rem;
+    }
+}
+h3{
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+    @media (min-width: 1024px){
+        font-size: 2.25rem;
+        margin-right: 1rem;
+    }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/gfr8kap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+    <header>
+        <div class="container flexbox">
+            <h1>Nasa mars rovers</h1>
+            <!-- en div runt texten och toggle för att placera dem med flexbox -->
+            <div class="switch-theme">
+                <p>Switch Theme:</p>
+                <!-- toggle knappen - label och input-id har samma namn -->
+                <label class="switch-btn" >
+                    <input type="checkbox" id="switch-btn">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Autocomplete off för att inte få förslag på vad user tidigare har skrivit i input -->
+        <form autocomplete="off" action="" id="name-form">
+            <h2>Choose your Space Name</h2>
+            <label for="input-name">Space Name (must be 3 characters)</label>
+            <input type="text" id="input-name" placeholder="Pick your space name">
+            <button type="submit" id="btn-submit" disabled>Show my name</button>
+        </form>
+        <section class="container">
+            <div class="welcome-text">
+                <h3>Welcome</h3>
+                <h3 id="text-input"></h3>
+            </div>
+            <div class="cards">
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

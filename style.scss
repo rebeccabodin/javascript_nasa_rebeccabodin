@@ -1,0 +1,233 @@
+@import 'sass/variables';
+@import 'sass/base';
+@import 'sass/typography';
+
+//style på klassen dark för att få dark-mode
+.dark{
+    background-color: $darkmode-bg;
+    color: $darkmode-primary-text;
+    header{
+        background-color: $darkmode-primary;
+    }
+    #name-form{
+        background-color: $darkmode-primary;
+        button{
+            background-color: $darkmode-bg;
+            color: $darkmode-primary-text;
+        }
+    }
+    main{
+        .cards{
+            .card{
+                background-color: $darkmode-primary;
+            }
+        }
+    }
+}
+.container{
+    @media (min-width: 620px){
+        max-width: 590px;
+        margin: auto;
+        &.flexbox{
+            display: flex;
+        }
+    }
+    @media (min-width: 1024px){
+        max-width: 1200px;
+    }
+}
+.welcome-text{
+    display: flex;
+    justify-content: center;
+    // om det valda namnet är för långt ska det wrappas och hamna under welcome texten
+    flex-wrap: wrap;
+    border-bottom: 4px solid $lightmode-btn-bg;
+    margin: 3rem 0;
+}
+header{
+    background-color: $lightmode-primary;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    @media (min-width: 620px){
+        display: block;
+    }
+    .switch-theme{
+        margin-top: 0.5rem;
+        display: flex;
+        // för att få switchen under texten
+        flex-direction: column;
+        align-items: center;
+        @media (min-width: 620px){
+            // för att boxen med texten + switchen ska hamna så långt åt vänster som möjligt
+            margin-left: auto;
+            margin-top: 0;
+            // för att återgå till default och få dem placerade bredvid varandra
+            flex-direction: initial;
+        }
+        .switch-btn {
+            // för att få luft mellan texten och slider
+            margin-top: 0.5rem;
+            // position relative för att kunna placera slidern
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+            @media (min-width: 620px){
+                margin-top: 0;
+                margin-left: 1rem;
+            }
+            // för att gömma default HTML checkbox
+            input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+                //När slider är i kryssad 
+                &:checked {
+                    + {
+                        .slider {
+                            // För att slidern ska få en anna bakgrund när den kryssas i 
+                            background-color: $lightmode-btn-bg;
+                            &:before {
+                                //Påverkar cirkeln
+                                //Hur långt cirkeln förflyttar sig
+                                transform: translateX(23px);
+                                background-color: $lightmode-bg;
+                            }
+                        }
+                    }
+                }
+                &:focus {
+                    //När den är markerad (klickad på)
+                    + {
+                        .slider {
+                            //Skugga när man klickar för att få den "i fokus"
+                            box-shadow: 0 0 2px;
+                        }
+                    }
+                }
+            }
+            .slider {
+                position: absolute;
+                // för att muspekaren ska indikera på att det går att trycka på switchen
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: $darkmode-secondary;
+                border-radius: 34px;
+                &:before {
+                    //Cirkeln i slider
+                    position: absolute;
+                    content: "";
+                    height: 20px;
+                    width: 20px;
+                    left: 4px;
+                    bottom: 4px;
+                    background-color: $darkmode-bg;
+                    border-radius: 50%;
+                    // påverkar övergången i switchen
+                    transition: 0.4s;
+                }
+            }
+        }
+    }
+}
+main{
+    padding: 3rem 1rem;
+    #name-form {
+        background-color: $lightmode-primary;
+        padding: 2rem;
+        border-radius: 20px;
+        @media (min-width: 620px){
+            max-width: 590px;
+            margin: auto;
+        }
+        input,
+        button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            // för att ta bort default border
+            border: transparent;
+            // för att få en snygg övergång mellan disabled och enabled knapp
+            transition: 0.5s;
+        }
+    
+        label {
+            display: block;
+            font-size: 0.75rem;
+            margin: 1rem 0 0.5rem 0;
+            @media (min-width: 1024px){
+                font-size: 1.25rem;
+            }
+        }
+        // style för inputfältet
+        input {
+            margin-bottom: 2rem;
+            font-family: "proxima-nova", sans-serif;
+            font-size: 1rem;
+            // för att få style på texten i inputfältet
+            &::placeholder {
+                font-family: "proxima-nova", sans-serif;
+                color: $lightmode-input-text;
+            }
+            // för att lägga till en border när den är i focus
+            &.focusBorder{
+                // tar bort default focus
+                outline: none;
+                border: 4px dashed $lightmode-btn-bg;
+            }
+        }
+        //style för knappen och texten i knappen
+        button {
+            font-family: "proxima-nova", sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            background-color: $lightmode-btn-bg;
+            color: $lightmode-bg;
+            @media (min-width: 620px){
+                max-width: 40%;
+                margin-left: auto;
+            }
+            // style för knappen när den ej går att trycka på
+            &:disabled{
+                background-color: $lightmode-default-btn;
+                color: $lightmode-input-text;
+                // för att muspekaren ska indikera att det ej går att trycka på knappen
+                cursor: not-allowed;
+            }
+        }
+    }
+    .cards{
+        @media (min-width: 620px){
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card{
+            border-radius: 20px;
+            margin: 0.5rem;
+            padding: 1rem 0;
+            background-color: $lightmode-secondary;
+            //storleken på cardsen i laptop
+            @media (min-width: 620px){
+                flex: 0 0 calc(100%/2 - 1rem);
+            }
+            //storleken på cardsen i desktop
+            @media (min-width: 1024px){
+                flex: 0 0 calc(100%/4 - 1rem);
+            }
+            p{
+                font-weight: 600;
+                text-align: center;
+            }
+            .imgContainer{
+                margin: 1rem;
+            }
+        }
+    }
+}
