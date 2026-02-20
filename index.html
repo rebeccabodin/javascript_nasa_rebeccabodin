@@ -40,19 +40,17 @@
     <header>
         <div class="container flexbox">
             <h1>Nasa mars rovers</h1>
-            <!-- en div runt texten och toggle för att placera dem med flexbox -->
             <div class="switch-theme">
                 <p>Switch Theme:</p>
-                <!-- toggle knappen - label och input-id har samma namn -->
-                <label class="switch-btn" >
+                <label class="switch-btn">
                     <input type="checkbox" id="switch-btn">
                     <span class="slider round"></span>
                 </label>
             </div>
         </div>
     </header>
+
     <main>
-        <!-- Autocomplete off för att inte få förslag på vad user tidigare har skrivit i input -->
         <form autocomplete="off" action="" id="name-form">
             <h2>Choose your Space Name</h2>
             <label for="input-name">Space Name (must be 3 characters)</label>
@@ -68,34 +66,43 @@
             </div>
         </section>
     </main>
+
     <script src="script.js"></script>
 
-    <!-- Cookie Banner -->
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#222;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
-    <span>Vi använder cookies för att förbättra din upplevelse. </span>
-    <button id="accept-cookies" style="background:#4CAF50;color:white;border:none;padding:10px 20px;cursor:pointer;">Acceptera</button>
-</div>
+    <!-- Cookie Banner med Acceptera / Neka -->
+    <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#222;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
+        <span>Vi använder cookies för att förbättra din upplevelse.</span>
+        <div>
+            <button id="accept-cookies" style="background:#4CAF50;color:white;border:none;padding:10px 20px;cursor:pointer;margin-right:10px;">Acceptera</button>
+            <button id="deny-cookies" style="background:#f44336;color:white;border:none;padding:10px 20px;cursor:pointer;">Neka</button>
+        </div>
+    </div>
 
-<script>
-  // Kontrollera om samtycke redan är givet
-  if(localStorage.getItem('cookiesAccepted') === 'true'){
-    document.getElementById('cookie-banner').style.display = 'none';
-  }
+    <script>
+      // Kontrollera om samtycke redan är givet
+      if(localStorage.getItem('cookiesAccepted') === 'true' || localStorage.getItem('cookiesAccepted') === 'false'){
+        document.getElementById('cookie-banner').style.display = 'none';
+      }
 
-  // Klick-händelse
-  document.getElementById('accept-cookies').addEventListener('click', function(){
-    // Uppdatera Consent Mode
-    gtag('consent', 'update', {
-      'analytics_storage': 'granted',
-      'ad_storage': 'granted'
-    });
+      // Acceptera
+      document.getElementById('accept-cookies').addEventListener('click', function(){
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted'
+        });
+        document.getElementById('cookie-banner').style.display = 'none';
+        localStorage.setItem('cookiesAccepted','true');
+      });
 
-    // Dölj bannern
-    document.getElementById('cookie-banner').style.display = 'none';
-
-    // Spara samtycke i localStorage
-    localStorage.setItem('cookiesAccepted','true');
-  });
-</script>
+      // Neka
+      document.getElementById('deny-cookies').addEventListener('click', function(){
+        gtag('consent', 'update', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied'
+        });
+        document.getElementById('cookie-banner').style.display = 'none';
+        localStorage.setItem('cookiesAccepted','false');
+      });
+    </script>
 </body>
 </html>
