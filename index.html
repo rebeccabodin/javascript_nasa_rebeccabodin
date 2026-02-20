@@ -9,8 +9,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/gfr8kap.css">
     <link rel="stylesheet" href="style.css">
+
+    <!-- GTM Consent default -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KLW8KH8P');
+    </script>
 </head>
 <body class="dark">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLW8KH8P"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    
     <header>
         <div class="container flexbox">
             <h1>Nasa mars rovers</h1>
@@ -43,5 +69,33 @@
         </section>
     </main>
     <script src="script.js"></script>
+
+    <!-- Cookie Banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#222;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
+    <span>Vi använder cookies för att förbättra din upplevelse. </span>
+    <button id="accept-cookies" style="background:#4CAF50;color:white;border:none;padding:10px 20px;cursor:pointer;">Acceptera</button>
+</div>
+
+<script>
+  // Kontrollera om samtycke redan är givet
+  if(localStorage.getItem('cookiesAccepted') === 'true'){
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+
+  // Klick-händelse
+  document.getElementById('accept-cookies').addEventListener('click', function(){
+    // Uppdatera Consent Mode
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted'
+    });
+
+    // Dölj bannern
+    document.getElementById('cookie-banner').style.display = 'none';
+
+    // Spara samtycke i localStorage
+    localStorage.setItem('cookiesAccepted','true');
+  });
+</script>
 </body>
 </html>
