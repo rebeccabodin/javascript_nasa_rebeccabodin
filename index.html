@@ -79,30 +79,46 @@
     </div>
 
     <script>
-      // Kontrollera om samtycke redan är givet
-      if(localStorage.getItem('cookiesAccepted') === 'true' || localStorage.getItem('cookiesAccepted') === 'false'){
-        document.getElementById('cookie-banner').style.display = 'none';
-      }
+document.addEventListener("DOMContentLoaded", function() {
 
-      // Acceptera
-      document.getElementById('accept-cookies').addEventListener('click', function(){
-        gtag('consent', 'update', {
-          'analytics_storage': 'granted',
-          'ad_storage': 'granted'
-        });
-        document.getElementById('cookie-banner').style.display = 'none';
-        localStorage.setItem('cookiesAccepted','true');
-      });
+  const banner = document.getElementById('cookie-banner');
+  const savedConsent = localStorage.getItem('cookiesAccepted');
 
-      // Neka
-      document.getElementById('deny-cookies').addEventListener('click', function(){
-        gtag('consent', 'update', {
-          'analytics_storage': 'denied',
-          'ad_storage': 'denied'
-        });
-        document.getElementById('cookie-banner').style.display = 'none';
-        localStorage.setItem('cookiesAccepted','false');
-      });
-    </script>
+  if(savedConsent === 'true'){
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted'
+    });
+    banner.style.display = 'none';
+  }
+
+  else if(savedConsent === 'false'){
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+    banner.style.display = 'none';
+  }
+
+  document.getElementById('accept-cookies').addEventListener('click', function(){
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted'
+    });
+    localStorage.setItem('cookiesAccepted','true');
+    banner.style.display = 'none';
+  });
+
+  document.getElementById('deny-cookies').addEventListener('click', function(){
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+    localStorage.setItem('cookiesAccepted','false');
+    banner.style.display = 'none';
+  });
+
+});
+</script>
 </body>
 </html>
