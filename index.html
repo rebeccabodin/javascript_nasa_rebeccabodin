@@ -4,39 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nasa</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.typekit.net/gfr8kap.css">
     <link rel="stylesheet" href="style.css">
 
-    <!-- GTM Consent default -->
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied'
-    });
-    </script>
-
     <!-- Google Tag Manager -->
     <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KLW8KH8P');
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-KLW8KH8P');
     </script>
+
 </head>
+
 <body class="dark">
 
-    <!-- Google Tag Manager (noscript) -->
+    <!-- GTM noscript -->
     <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLW8KH8P"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
-    
+
     <header>
         <div class="container flexbox">
             <h1>Nasa mars rovers</h1>
@@ -57,68 +50,43 @@
             <input type="text" id="input-name" placeholder="Pick your space name">
             <button type="submit" id="btn-submit" disabled>Show my name</button>
         </form>
+
         <section class="container">
             <div class="welcome-text">
                 <h3>Welcome</h3>
                 <h3 id="text-input"></h3>
             </div>
-            <div class="cards">
-            </div>
+            <div class="cards"></div>
         </section>
     </main>
 
     <script src="script.js"></script>
 
-    <!-- Cookie Banner med Acceptera / Neka -->
+    <!-- Cookie Banner -->
     <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#222;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
         <span>Vi använder cookies för att förbättra din upplevelse.</span>
         <div>
-            <button id="accept-cookies" style="background:#4CAF50;color:white;border:none;padding:10px 20px;cursor:pointer;margin-right:10px;">Acceptera</button>
-            <button id="deny-cookies" style="background:#f44336;color:white;border:none;padding:10px 20px;cursor:pointer;">Neka</button>
+            <button id="accept-cookies" style="background:#4CAF50;color:white;border:none;padding:10px 20px;cursor:pointer;margin-right:10px;">
+                Acceptera
+            </button>
+            <button id="deny-cookies" style="background:#f44336;color:white;border:none;padding:10px 20px;cursor:pointer;">
+                Neka
+            </button>
         </div>
     </div>
 
+    <!-- Endast dataLayer events -->
     <script>
-document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById('accept-cookies').addEventListener('click', function() {
+        dataLayer.push({ event: 'accept_cookies' });
+        document.getElementById('cookie-banner').style.display = 'none';
+      });
 
-  const banner = document.getElementById('cookie-banner');
-  const savedConsent = localStorage.getItem('cookiesAccepted');
+      document.getElementById('deny-cookies').addEventListener('click', function() {
+        dataLayer.push({ event: 'deny_cookies' });
+        document.getElementById('cookie-banner').style.display = 'none';
+      });
+    </script>
 
-  if(savedConsent === 'true'){
-    gtag('consent', 'update', {
-      'analytics_storage': 'granted',
-      'ad_storage': 'granted'
-    });
-    banner.style.display = 'none';
-  }
-
-  else if(savedConsent === 'false'){
-    gtag('consent', 'update', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied'
-    });
-    banner.style.display = 'none';
-  }
-
-  document.getElementById('accept-cookies').addEventListener('click', function(){
-    gtag('consent', 'update', {
-      'analytics_storage': 'granted',
-      'ad_storage': 'granted'
-    });
-    localStorage.setItem('cookiesAccepted','true');
-    banner.style.display = 'none';
-  });
-
-  document.getElementById('deny-cookies').addEventListener('click', function(){
-    gtag('consent', 'update', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied'
-    });
-    localStorage.setItem('cookiesAccepted','false');
-    banner.style.display = 'none';
-  });
-
-});
-</script>
 </body>
 </html>
